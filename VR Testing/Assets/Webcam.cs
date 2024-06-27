@@ -18,7 +18,7 @@ public class Webcam : MonoBehaviour
             print("Webcam available: " + devices[i].name);
         }
 
-        WebCamTexture tex = new WebCamTexture(devices[1].name);
+        WebCamTexture tex = new WebCamTexture(devices[0].name);
         this.img.texture = tex;
         tex.Play();
         
