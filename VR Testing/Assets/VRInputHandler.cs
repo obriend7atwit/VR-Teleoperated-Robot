@@ -15,7 +15,7 @@ public class VRInputHandler : MonoBehaviour
     void Start()
     {
         // Connect to the Python script running on the laptop
-        client = new TcpClient("172.20.10.2", 12345);
+        client = new TcpClient("172.20.10.8", 12345);
         stream = client.GetStream();
 
         // Try to find the left hand controller device
@@ -66,14 +66,17 @@ public class VRInputHandler : MonoBehaviour
             {
                 SendCommand("backward");
             }
-
-            if (leftJoystick.x > 0.5f)
+            else if (leftJoystick.x > 0.5f)
             {
                 SendCommand("right");
             }
             else if (leftJoystick.x < -0.5f)
             {
                 SendCommand("left");
+            }
+            else
+            {
+                SendCommand("stop");
             }
         }
     }
