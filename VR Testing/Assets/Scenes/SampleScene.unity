@@ -1200,6 +1200,7 @@ GameObject:
   - component: {fileID: 1469387254}
   - component: {fileID: 1469387253}
   - component: {fileID: 1469387252}
+  - component: {fileID: 1469387255}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -1233,7 +1234,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469387250}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffa31941e0270d441a814a7b487e0771, type: 3}
   m_Name: 
@@ -1274,6 +1275,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469387250}
   m_CullTransparentMesh: 1
+--- !u!114 &1469387255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469387250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b94836563a2d5b428916b6ddeffd9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverUrl: ws://localhost:8080/websocket/
 --- !u!1001 &1484272649
 PrefabInstance:
   m_ObjectHideFlags: 0
