@@ -1,10 +1,10 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Net.Sockets;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 
-public class VideoReceiver : MonoBehaviour
+public class VideoReceiver1 : MonoBehaviour
 {
     public Renderer renderer1;
     public Renderer renderer2;
@@ -56,3 +56,4 @@ public class VideoReceiver : MonoBehaviour
         client.Close();
     }
 }
+*/
