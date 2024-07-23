@@ -20,7 +20,7 @@ public class VideoReceiver : MonoBehaviour
         Debug.Log("Attempting to connect to server...");
         try
         {
-            client = new TcpClient("10.0.0.248", 12345); // IP Address of the Pi
+            client = new TcpClient("172.20.10.8", 12345); // IP Address of the Pi (10.0.0.248) <-- Home
             stream = client.GetStream();
             receiveThread = new Thread(new ThreadStart(ReceiveData));
             receiveThread.Start();
@@ -82,7 +82,7 @@ public class VideoReceiver : MonoBehaviour
                 // Update textures on the main thread
                 UnityMainThreadDispatcher.Instance().Enqueue(() =>
                 {
-                    Debug.Log("Updating textures on main thread.");
+                    //Debug.Log("Updating textures on main thread.");
 
                     Texture2D tex1 = new Texture2D(640, 480);
                     tex1.LoadImage(imageBuffer1);
