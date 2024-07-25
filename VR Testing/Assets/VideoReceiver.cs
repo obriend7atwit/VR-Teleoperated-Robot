@@ -15,12 +15,15 @@ public class VideoReceiver : MonoBehaviour
     private NetworkStream stream;
     private Thread receiveThread;
 
+    private Texture2D tex1;
+    private Texture2D tex2;
+
     void Start()
     {
         Debug.Log("Attempting to connect to server...");
         try
         {
-            client = new TcpClient("172.20.10.8", 12345); // IP Address of the Pi (10.0.0.248) <-- Home
+            client = new TcpClient("10.0.0.248", 12345); // IP Address of the Pi
             stream = client.GetStream();
             receiveThread = new Thread(new ThreadStart(ReceiveData));
             receiveThread.Start();
@@ -82,13 +85,19 @@ public class VideoReceiver : MonoBehaviour
                 // Update textures on the main thread
                 UnityMainThreadDispatcher.Instance().Enqueue(() =>
                 {
-                    //Debug.Log("Updating textures on main thread.");
+                    Debug.Log("Updating textures on main thread.");
 
-                    Texture2D tex1 = new Texture2D(640, 480);
+                    if (tex1 == null)
+                    {
+                        tex1 = new Texture2D(640, 480); // Adjust size to match Raspberry Pi settings
+                    }
                     tex1.LoadImage(imageBuffer1);
                     rawImage1.texture = tex1;
 
-                    Texture2D tex2 = new Texture2D(640, 480);
+                    if (tex2 == null)
+                    {
+                        tex2 = new Texture2D(640, 480); // Adjust size to match Raspberry Pi settings
+                    }
                     tex2.LoadImage(imageBuffer2);
                     rawImage2.texture = tex2;
                 });
@@ -141,8 +150,20 @@ public class VideoReceiver : MonoBehaviour
         {
             client.Close();
         }
+
+        if (tex1 != null)
+        {
+            Destroy(tex1);
+        }
+
+        if (tex2 != null)
+        {
+            Destroy(tex2);
+        }
+
         Debug.Log("Application quitting, resources cleaned up.");
     }
 }
+
 
 

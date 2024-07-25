@@ -37,7 +37,7 @@ public class VRInputHandler : MonoBehaviour
 
     void FindLeftHandController()
     {
-        Debug.Log("Attempting to find left hand controller...");
+        //Debug.Log("Attempting to find left hand controller...");
         var leftHandDevices = new List<UnityEngine.XR.InputDevice>();
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller, leftHandDevices);
 
@@ -48,7 +48,7 @@ public class VRInputHandler : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Left hand controller not found.");
+            //Debug.LogError("Left hand controller not found.");
         }
     }
 
