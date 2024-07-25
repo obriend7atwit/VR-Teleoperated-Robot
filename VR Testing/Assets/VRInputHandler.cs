@@ -30,7 +30,7 @@ public class VRInputHandler : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Left hand device not valid, attempting to find again.");
+            //Debug.LogWarning("Left hand device not valid, attempting to find again.");
             FindLeftHandController();
         }
     }
