@@ -15,7 +15,7 @@ public class VRInputHandler : MonoBehaviour
     void Start()
     {
         // Connect to the Python script running on the laptop
-        client = new TcpClient("172.20.10.8", 12346);
+        client = new TcpClient("10.0.0.248", 12346);
         stream = client.GetStream();
 
         // Try to find the left hand controller device

@@ -8,6 +8,9 @@ using System;
 
 public class VideoReceiver : MonoBehaviour
 {
+    public RenderTexture LeftEyeRenderTexture;
+    public RenderTexture RightEyeRenderTexture;
+
     private TcpClient client;
     private NetworkStream stream;
     private Thread receiveThread;
@@ -15,26 +18,16 @@ public class VideoReceiver : MonoBehaviour
     private Texture2D tex1;
     private Texture2D tex2;
 
-    private Camera leftEyeCamera;
-    private Camera rightEyeCamera;
-
     void Start()
     {
         Debug.Log("Attempting to connect to server...");
         try
         {
-            client = new TcpClient("172.20.10.8", 12345); // IP Address of the Pi
+            client = new TcpClient("10.0.0.248", 12345); // IP Address of the Pi
             stream = client.GetStream();
             receiveThread = new Thread(new ThreadStart(ReceiveData));
             receiveThread.Start();
             Debug.Log("Connected to server.");
-
-            // Find the VR cameras
-            leftEyeCamera = GameObject.Find("LeftEyeCamera").GetComponent<Camera>();
-            rightEyeCamera = GameObject.Find("RightEyeCamera").GetComponent<Camera>();
-
-            Debug.Log($"Left Eye Camera: {leftEyeCamera.name}");
-            Debug.Log($"Right Eye Camera: {rightEyeCamera.name}");
         }
         catch (SocketException e)
         {
@@ -106,18 +99,11 @@ public class VideoReceiver : MonoBehaviour
                     }
                     tex2.LoadImage(imageBuffer2);
 
-                    // Assign textures to the VR cameras
-                    if (leftEyeCamera != null)
-                    {
-                        leftEyeCamera.targetTexture = new RenderTexture(tex1.width, tex1.height, 24);
-                        Graphics.Blit(tex1, leftEyeCamera.targetTexture);
-                    }
+                    // Apply textures to render textures
+                    Graphics.Blit(tex1, LeftEyeRenderTexture);
+                    Graphics.Blit(tex2, RightEyeRenderTexture);
 
-                    if (rightEyeCamera != null)
-                    {
-                        rightEyeCamera.targetTexture = new RenderTexture(tex2.width, tex2.height, 24);
-                        Graphics.Blit(tex2, rightEyeCamera.targetTexture);
-                    }
+                    Debug.Log("Assigned textures to render textures.");
                 });
             }
             catch (IOException e)
@@ -182,6 +168,8 @@ public class VideoReceiver : MonoBehaviour
         Debug.Log("Application quitting, resources cleaned up.");
     }
 }
+
+
 
 /*using UnityEngine;
 using UnityEngine.UI;
