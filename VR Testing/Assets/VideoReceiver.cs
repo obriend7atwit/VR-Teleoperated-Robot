@@ -89,13 +89,13 @@ public class VideoReceiver : MonoBehaviour
 
                     if (tex1 == null)
                     {
-                        tex1 = new Texture2D(640, 480); // Adjust size to match Raspberry Pi settings
+                        tex1 = new Texture2D(1920, 1080); // Adjust size to match Raspberry Pi settings
                     }
                     tex1.LoadImage(imageBuffer1);
 
                     if (tex2 == null)
                     {
-                        tex2 = new Texture2D(640, 480); // Adjust size to match Raspberry Pi settings
+                        tex2 = new Texture2D(1920, 1080); // Adjust size to match Raspberry Pi settings
                     }
                     tex2.LoadImage(imageBuffer2);
 
