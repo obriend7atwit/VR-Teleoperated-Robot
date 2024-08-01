@@ -23,7 +23,7 @@ public class VideoReceiver : MonoBehaviour
         Debug.Log("Attempting to connect to server...");
         try
         {
-            client = new TcpClient("172.20.10.8", 12345); // IP Address of the Pi
+            client = new TcpClient("10.0.0.248", 12345); // IP Address of the Pi 172.20.10.8
             stream = client.GetStream();
             receiveThread = new Thread(new ThreadStart(ReceiveData));
             receiveThread.Start();
@@ -85,17 +85,17 @@ public class VideoReceiver : MonoBehaviour
                 // Update textures on the main thread
                 UnityMainThreadDispatcher.Instance().Enqueue(() =>
                 {
-                    Debug.Log("Updating textures on main thread.");
+                    //Debug.Log("Updating textures on main thread.");
 
                     if (tex1 == null)
                     {
-                        tex1 = new Texture2D(1920, 1080); // Adjust size to match Raspberry Pi settings
+                        tex1 = new Texture2D(1080, 720); // Adjust size to match Raspberry Pi settings
                     }
                     tex1.LoadImage(imageBuffer1);
 
                     if (tex2 == null)
                     {
-                        tex2 = new Texture2D(1920, 1080); // Adjust size to match Raspberry Pi settings
+                        tex2 = new Texture2D(1080, 720); // Adjust size to match Raspberry Pi settings
                     }
                     tex2.LoadImage(imageBuffer2);
 
@@ -103,7 +103,7 @@ public class VideoReceiver : MonoBehaviour
                     Graphics.Blit(tex1, LeftEyeRenderTexture);
                     Graphics.Blit(tex2, RightEyeRenderTexture);
 
-                    Debug.Log("Assigned textures to render textures.");
+                    //Debug.Log("Assigned textures to render textures.");
                 });
             }
             catch (IOException e)
