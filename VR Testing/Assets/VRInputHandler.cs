@@ -15,7 +15,11 @@ public class VRInputHandler : MonoBehaviour
     void Start()
     {
         // Connect to the Python script running on the laptop
+<<<<<<< Updated upstream
         client = new TcpClient("172.20.10.8", 12345);
+=======
+        client = new TcpClient("172.20.10.8", 12346);
+>>>>>>> Stashed changes
         stream = client.GetStream();
 
         // Try to find the left hand controller device
@@ -56,7 +60,7 @@ public class VRInputHandler : MonoBehaviour
     {
         if (leftHandDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 leftJoystick))
         {
-            Debug.Log("Left joystick position: " + leftJoystick);
+            //Debug.Log("Left joystick position: " + leftJoystick);
 
             if (leftJoystick.y > 0.5f)
             {
