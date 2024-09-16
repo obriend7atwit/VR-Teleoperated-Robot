@@ -23,7 +23,7 @@ public class VideoReceiver : MonoBehaviour
         Debug.Log("Attempting to connect to server...");
         try
         {
-            client = new TcpClient("172.20.10.8", 12345); // IP Address of the Pi 172.20.10.8
+            client = new TcpClient("10.0.0.249", 12345); // IP Address of the Pi 172.20.10.8
             stream = client.GetStream();
             receiveThread = new Thread(new ThreadStart(ReceiveData));
             receiveThread.Start();
