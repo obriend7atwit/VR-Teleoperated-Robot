@@ -15,7 +15,7 @@ public class VRInputHandler : MonoBehaviour
     void Start()
     {
         // Connect to the Python script running on the laptop
-        client = new TcpClient("172.20.10.8", 12346);
+        client = new TcpClient("10.0.0.249", 12346);
         stream = client.GetStream();
 
         // Try to find the left hand controller device
@@ -30,14 +30,14 @@ public class VRInputHandler : MonoBehaviour
         }
         else
         {
-            //Debug.LogWarning("Left hand device not valid, attempting to find again.");
+            Debug.LogWarning("Left hand device not valid, attempting to find again.");
             FindLeftHandController();
         }
     }
 
     void FindLeftHandController()
     {
-        //Debug.Log("Attempting to find left hand controller...");
+        Debug.Log("Attempting to find left hand controller...");
         var leftHandDevices = new List<UnityEngine.XR.InputDevice>();
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller, leftHandDevices);
 
@@ -48,7 +48,7 @@ public class VRInputHandler : MonoBehaviour
         }
         else
         {
-            //Debug.LogError("Left hand controller not found.");
+            Debug.LogError("Left hand controller not found.");
         }
     }
 

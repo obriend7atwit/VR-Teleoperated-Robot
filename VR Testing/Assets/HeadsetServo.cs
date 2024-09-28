@@ -6,7 +6,7 @@ using System;
 
 public class HeadsetServo : MonoBehaviour
 {
-    public string serverIp = "10.0.0.248";
+    public string serverIp = "10.0.0.249";
     public int serverPort = 12349;
     private TcpClient client;
     private NetworkStream stream;
